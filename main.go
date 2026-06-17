@@ -8,6 +8,8 @@ import (
 	contentcmds "github.com/fil-forge/libforge/commands/content"
 	"github.com/fil-forge/ucantone/did"
 	"github.com/fil-forge/ucantone/principal/ed25519"
+	"github.com/fil-forge/ucantone/principal/mldsa44"
+	"github.com/fil-forge/ucantone/principal/secp256k1"
 	"github.com/fil-forge/ucantone/ucan"
 	"github.com/fil-forge/ucantone/ucan/container"
 	"github.com/fil-forge/ucantone/ucan/invocation"
@@ -15,8 +17,20 @@ import (
 	mh "github.com/multiformats/go-multihash"
 )
 
+func generateSigner(name string) (ucan.Signer, error) {
+	switch name {
+	case "mldsa44":
+		return mldsa44.Generate()
+	case "secp256k1":
+		return secp256k1.Generate()
+	}
+	return ed25519.Generate()
+}
+
 func main() {
-	space, err := ed25519.Generate()
+	signerName := "ed25519"
+
+	space, err := generateSigner(signerName)
 	if err != nil {
 		panic(err)
 	}
@@ -37,7 +51,7 @@ func main() {
 	dlgs := []ucan.Delegation{}
 
 	for range 20 {
-		next, err := ed25519.Generate()
+		next, err := generateSigner(signerName)
 		if err != nil {
 			panic(err)
 		}
