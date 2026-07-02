@@ -7,9 +7,8 @@ import (
 	"github.com/dustin/go-humanize"
 	contentcmds "github.com/fil-forge/libforge/commands/content"
 	"github.com/fil-forge/ucantone/did"
-	"github.com/fil-forge/ucantone/principal/ed25519"
-	"github.com/fil-forge/ucantone/principal/mldsa44"
-	"github.com/fil-forge/ucantone/principal/secp256k1"
+	"github.com/fil-forge/ucantone/multikey/ed25519"
+	"github.com/fil-forge/ucantone/multikey/secp256k1"
 	"github.com/fil-forge/ucantone/ucan"
 	"github.com/fil-forge/ucantone/ucan/container"
 	"github.com/fil-forge/ucantone/ucan/invocation"
@@ -17,14 +16,21 @@ import (
 	mh "github.com/multiformats/go-multihash"
 )
 
-func generateSigner(name string) (ucan.Signer, error) {
+// generateSigner produces a UCAN Issuer (a signer bound to a Principal) for the
+// named key type. Under the post-PR#30 API a bare ucan.Signer is no longer a
+// Principal and has no DID; the identities this benchmark delegates and invokes
+// with must be ucan.Issuers, so we construct one via each multikey package's
+// GenerateIssuer helper (which pairs a freshly generated signer with its
+// did:key). Defaults to ed25519.
+//
+// Note: the mldsa44 key type is no longer provided by ucantone after the
+// Attested Signatures refactor, so only ed25519 (default) and secp256k1 remain.
+func generateSigner(name string) (ucan.Issuer, error) {
 	switch name {
-	case "mldsa44":
-		return mldsa44.Generate()
 	case "secp256k1":
-		return secp256k1.Generate()
+		return secp256k1.GenerateIssuer()
 	}
-	return ed25519.Generate()
+	return ed25519.GenerateIssuer()
 }
 
 func main() {
