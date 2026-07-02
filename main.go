@@ -8,6 +8,7 @@ import (
 	contentcmds "github.com/fil-forge/libforge/commands/content"
 	"github.com/fil-forge/ucantone/did"
 	"github.com/fil-forge/ucantone/multikey/ed25519"
+	"github.com/fil-forge/ucantone/multikey/mldsa44"
 	"github.com/fil-forge/ucantone/multikey/secp256k1"
 	"github.com/fil-forge/ucantone/ucan"
 	"github.com/fil-forge/ucantone/ucan/container"
@@ -23,10 +24,12 @@ import (
 // GenerateIssuer helper (which pairs a freshly generated signer with its
 // did:key). Defaults to ed25519.
 //
-// Note: the mldsa44 key type is no longer provided by ucantone after the
-// Attested Signatures refactor, so only ed25519 (default) and secp256k1 remain.
+// mldsa44 (post-quantum ML-DSA-44) comes from ucantone's new multikey/mldsa44
+// package, reinstated on the post-#30 layout in fil-forge/ucantone#37.
 func generateSigner(name string) (ucan.Issuer, error) {
 	switch name {
+	case "mldsa44":
+		return mldsa44.GenerateIssuer()
 	case "secp256k1":
 		return secp256k1.GenerateIssuer()
 	}

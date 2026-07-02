@@ -5,12 +5,13 @@ go 1.25.3
 require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/fil-forge/libforge v0.0.0-20260701162346-f0706e1641a3
-	github.com/fil-forge/ucantone v0.0.0-20260630103048-a8f24fe31eb6
+	github.com/fil-forge/ucantone v0.0.0-20260702175651-12732483947f
 	github.com/ipfs/go-cid v0.6.1
 	github.com/multiformats/go-multihash v0.2.3
 )
 
 require (
+	filippo.io/mldsa v0.0.0-20260215214346-43d0283efc3e // indirect
 	github.com/alanshaw/dag-json-gen v0.0.8 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
