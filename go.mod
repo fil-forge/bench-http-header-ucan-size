@@ -1,19 +1,18 @@
 module github.com/fil-forge/bench-http-header-ucan-size
 
-go 1.25.3
+go 1.27.0
 
 require (
 	github.com/dustin/go-humanize v1.0.1
 	github.com/fil-forge/libforge v0.0.0-20260701162346-f0706e1641a3
-	github.com/fil-forge/ucantone v0.0.0-20260702175651-12732483947f
-	github.com/ipfs/go-cid v0.6.1
+	github.com/fil-forge/ucantone v0.0.0-20261120104359-4253712d41e4
+	github.com/ipfs/go-cid v0.6.2
 	github.com/multiformats/go-multihash v0.2.3
 )
 
 require (
-	filippo.io/mldsa v0.0.0-20260215214346-43d0283efc3e // indirect
-	github.com/alanshaw/dag-json-gen v0.0.8 // indirect
-	github.com/gobwas/glob v0.2.3 // indirect
+	github.com/alanshaw/dag-json-gen v0.0.11 // indirect
+	github.com/gobwas/glob v1.1.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
 	github.com/minio/sha256-simd v1.0.1 // indirect
 	github.com/mr-tron/base58 v1.3.0 // indirect
@@ -26,8 +25,8 @@ require (
 	github.com/whyrusleeping/cbor-gen v0.3.1 // indirect
 	gitlab.com/yawning/secp256k1-voi v0.0.0-20230925100816-f2616030848b // indirect
 	gitlab.com/yawning/tuplehash v0.0.0-20230713102510-df83abbf9a02 // indirect
-	golang.org/x/crypto v0.50.0 // indirect
-	golang.org/x/sys v0.43.0 // indirect
+	golang.org/x/crypto v0.53.0 // indirect
+	golang.org/x/sys v0.46.0 // indirect
 	golang.org/x/xerrors v0.0.0-20240903120638-7835f813f4da // indirect
 	lukechampine.com/blake3 v1.4.1 // indirect
 	pitr.ca/jsontokenizer v0.3.2 // indirect
